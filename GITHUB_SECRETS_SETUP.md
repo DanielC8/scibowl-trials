@@ -17,15 +17,13 @@ For GitHub Pages to build your app, you need to add these as **GitHub Secrets**.
 
 1. Click **"New repository secret"** button
 2. Name: `VITE_GOOGLE_CLIENT_ID`
-3. Secret: `878351028404-bvt9f02j9648gpd6fm8dggdiam93iiiq.apps.googleusercontent.com`
-4. Click **"Add secret"**
+=4. Click **"Add secret"**
 
 ### 3. Add Second Secret (API Key)
 
 1. Click **"New repository secret"** again
 2. Name: `VITE_GOOGLE_API_KEY`
-3. Secret: `AIzaSyBtEgN6fH4RuqETTFYJ1be58n9qlaXVLqs`
-4. Click **"Add secret"**
+=4. Click **"Add secret"**
 
 ### 4. Enable GitHub Pages
 
