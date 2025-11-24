@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // Set base to repository name for GitHub Pages
-  // Change 'windsurf-project' to your actual repository name
-  base: process.env.GITHUB_PAGES ? '/scibowl-trials/' : '/',
+  // Use '/' for local dev, '/scibowl-trials/' for production
+  base: process.env.NODE_ENV === 'production' ? '/scibowl-trials/' : '/',
   optimizeDeps: {
     include: ['lucide-react', 'pdfjs-dist']
   },
