@@ -14,25 +14,17 @@ function shuffleArray<T>(array: T[]): T[] {
 
 /**
  * Generate a problem set based on the configuration
- * Assigns new sequential round numbers to the generated problems
+ * Selects problems with uniform distribution across rounds
  */
 export function generateProblemSet(
   problemBank: ProblemBank,
   config: GenerationConfig
 ): Problem[] {
-  let problems: Problem[];
-  
   if (config.mode === 'single') {
-    problems = generateSingleSubject(problemBank, config.subject!, config.count, config.roundNumbers);
+    return generateSingleSubject(problemBank, config.subject!, config.count, config.roundNumbers);
   } else {
-    problems = generateMixedSubjects(problemBank, config.ratios!, config.count, config.roundNumbers);
+    return generateMixedSubjects(problemBank, config.ratios!, config.count, config.roundNumbers);
   }
-  
-  // Assign new sequential round numbers (1, 2, 3, 4...)
-  return problems.map((problem, index) => ({
-    ...problem,
-    roundNumber: index + 1
-  }));
 }
 
 /**
@@ -47,7 +39,7 @@ function filterByRoundNumbers(problems: Problem[], roundNumbers?: number[]): Pro
 
 /**
  * Select problems with uniform distribution across rounds
- * Ensures roughly equal number of problems from each round
+ * Ensures roughly equal number of problems from each round, then shuffles for random order
  */
 function selectUniformByRound(problems: Problem[], count: number): Problem[] {
   if (problems.length === 0) return [];
@@ -82,7 +74,8 @@ function selectUniformByRound(problems: Problem[], count: number): Problem[] {
     roundIndex++;
   }
   
-  return result;
+  // Shuffle final result for random order while maintaining uniform distribution
+  return shuffleArray(result);
 }
 
 /**
